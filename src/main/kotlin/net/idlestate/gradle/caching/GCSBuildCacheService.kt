@@ -112,7 +112,7 @@ class GCSBuildCacheService(credentials: String, val bucketName: String, val pref
             // see terraform docs: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference.html#access_token-1
             val envAccessToken: String = System.getenv("GOOGLE_OAUTH_ACCESS_TOKEN")
 
-            if (envAccessToken != null) {
+            if (envAccessToken != null && !envAccessToken.isEmpty()) {
                 return GoogleCredentials.create(AccessToken(envAccessToken, null))
             } else {
                 return GoogleCredentials.getApplicationDefault()
